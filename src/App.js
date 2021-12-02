@@ -6,7 +6,15 @@ import { ClienteContext } from "./ClienteContext.js";
 import Header from "./Header.js";
 import Listagem from "./Listagem.js";
 import UserLogin from "./UserLogin.js";
+import Form from "./Form.js";
+import FormTwo from "./FormTwo.js";
+import Reviews from "./Reviews.js";
+import "./App.css";
 import Grafico2 from "./Grafico2.js";
+
+
+
+
 
 function App() {
 
@@ -18,13 +26,18 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact>
-            <Listagem />
+            <Form/>
+            <Listagem / >
+
           </Route>
           <Route path="/login">
             <UserLogin />
           </Route>
           <Route path="/graph1">
-            <Grafico2 />
+           <Grafico2/>
+          </Route>
+          <Route path="/review">
+           <Reviews/>
           </Route>
         </Switch>
       </Router>

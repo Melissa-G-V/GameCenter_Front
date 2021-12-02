@@ -35,6 +35,11 @@ const Header = () => {
           </Link>
         </li>
         <li className="nav-item">
+          <Link className="nav-link" to="/review">
+            Reviews
+          </Link>
+        </li>
+        <li className="nav-item">
           <span className="nav-link" onClick={loginLogout}>
             <i className="fas fa-user-friends mr-2"></i>
             { cliente.dados.nome ? cliente.dados.nome + " (sair)" : "(identifique-se)"}

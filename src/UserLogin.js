@@ -14,7 +14,7 @@ const UserLogin = () => {
   const cliente = useContext(ClienteContext);
 
   const onSubmit = async (data) => {
-    //    alert(JSON.stringify(data));
+        alert(JSON.stringify(data));
     const login = await Conecta.post("login", data);
 
     if (login.data.userId) {
@@ -27,8 +27,7 @@ const UserLogin = () => {
     } else {
       console.log("Erro... Inválido");
     }
-
-    //    console.log(login);
+    console.log(login.data);
   };
 
   return (
