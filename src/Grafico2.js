@@ -22,21 +22,21 @@ ChartJS.register(
 );
 
 const Grafico2 = () => {
-  const [marcas, setMarcas] = useState([]);
+  const [generos, setGeneros] = useState([]);
 
-  const getMarcas = async () => {
-    const lista = await Conecta.get("marcas_carros");
+  const getGeneros = async () => {
+    const lista = await Conecta.get("estatistica");
     //    console.log(lista);
-    setMarcas(lista.data);
+    setGeneros(lista.data);
   };
 
   // define o método que será executado após renderizar o componente
   useEffect(() => {
-    getMarcas();
+    getGeneros();
   }, []);
 
-  const labels = marcas.map((marca) => marca.nome);
-  const data1 = marcas.map((marca) => marca.num);
+  const labels = generos.map((genero) => genero.nome);
+  const data1 = generos.map((genero) => genero.num);
 
   const options = {
     responsive: true,
@@ -46,7 +46,7 @@ const Grafico2 = () => {
       },
       title: {
         display: true,
-        text: "Nº de Veículos por Marca",
+        text: "Nº de Veículos por genero",
       },
     },
   };
@@ -55,7 +55,7 @@ const Grafico2 = () => {
     labels,
     datasets: [
       {
-        label: "Nº de Veículos",
+        label: "Nº de Jogos",
         data: data1,
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },

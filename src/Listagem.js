@@ -6,7 +6,7 @@ import ItemLista from "./ItemLista";
 import { ClienteContext } from "./ClienteContext";
 
 const Listagem = () => {
-  const [carros, setCarros] = useState([]);
+  const [jogos, setJogos] = useState([]);
   const {
     register,
     handleSubmit,
@@ -15,15 +15,15 @@ const Listagem = () => {
 
   const cliente = useContext(ClienteContext);
 
-  const getCarros = async () => {
-    const lista = await Conecta.get("carros");
+  const getJogos = async () => {
+    const lista = await Conecta.get("jogos");
     //    console.log(lista);
-    setCarros(lista.data);
+    setJogos(lista.data);
   };
 
   // define o método que será executado após renderizar o componente
   useEffect(() => {
-    getCarros();
+    getJogos();
   }, []);
 // define o método que será executado após renderizar o componente
 
@@ -31,7 +31,7 @@ const Listagem = () => {
     
     let voto = {
       usuario_id: cliente.dados.id,
-      carro_id: id,
+      jogo_id: id,
       gostou: 1,
     };
 
@@ -41,60 +41,60 @@ const Listagem = () => {
 
     await Conecta.post("likes", voto, config);
 
-    // Obtém o registro (para saber a quantidade de likes da tabela carros)
-    const reg = await Conecta.get("carros/" + id);
+    // Obtém o registro (para saber a quantidade de likes da tabela jogos)
+    const reg = await Conecta.get("jogos/" + id);
     //console.log(reg)
 
     let likes = Number(reg.data.likes) + 1;
 
     // altera a quantidade de likes no WebServices
-    await Conecta.put("carros/like/" + id);
+    await Conecta.put("jogos/like/" + id);
 
     // atualiza o array
-    let newCarros = [...carros];
-    newCarros[index].likes = likes;
-    setCarros(newCarros);
+    let newjogos = [...jogos];
+    newjogos[index].likes = likes;
+    setJogos(newjogos);
 
     alert("Ok! Obrigado pela sua participação");
   };
 
 
-//DELETA O CARRO
+//DELETA O jogo
   const DelCar = async (id) =>{
-    await Conecta.delete("carros/" + id);
+    await Conecta.delete("jogos/" + id);
     alert("Item Deletado")
-    await getCarros();
+    await getJogos();
   }
-//FAVORITA O CARRO
+//FAVORITA O jogo
   const FavCar = async (id) =>{
-    await Conecta.put("carros/destaque/" + id)
+    await Conecta.put("jogos/destaque/" + id)
     alert("Item Favoritado")
-    await getCarros();
+    await getJogos();
   }
-//PESQUISA O CARRO
+//PESQUISA O jogo
   const onSubmit = async (data)=>{
       console.log("data", data);
       const propertyNames = Object.values(data);
       console.log(propertyNames[0])
 
-      axios.post(`http://localhost:3001/carros/pesq/${propertyNames[0]}`,{})
+      axios.post(`http://localhost:3001/jogos/pesq/${propertyNames[0]}`,{})
         .then(function (response) {
           alert(`Pesquisa escrita com a palavra: ${propertyNames[0]}`)
           console.log(response);
-          setCarros(response.data)
+          setJogos(response.data)
         })
         .catch(function (error) {
           alert('Pesquisa mal escrita, retornando a lista original')
           console.log(error);
-          getCarros();
+          getJogos();
         });
    };
 
-//ENVIA O FORM CARROS
+//ENVIA O FORM jogoS
    const onSubmit2 = async (data2) => {
     console.log("data", data2);
    
-    axios.post('http://localhost:3001/carros', {
+    axios.post('http://localhost:3001/jogos', {
         modelo: data2.modelo,
         foto: data2.foto,
         ano: data2.ano,
@@ -104,7 +104,7 @@ const Listagem = () => {
       .then(function (response) {
         alert('Item Cadastrado Com Sucesso')
         console.log(response)
-        getCarros()
+        getJogos()
         
       })
       .catch(function (error) {
@@ -117,57 +117,7 @@ const Listagem = () => {
 
 
   return (
-    <><div className="form col-sm">
-      <div className="card">
-        <div className="card-header bg-primary">ENVIAR VEICULO</div>
-        <div className="card-body bg-secondary">
-          <form onSubmit={handleSubmit(onSubmit2)}>
-            {/* register your input into the hook by invoking the "register" function */}
-            <input className="form-control"
-              placeholder="modelo" defaultValue="modelo" {...register("modelo")} />
-            {/* include validation with required or other standard HTML validation rules */}
-            <input type="foto" className="form-control" placeholder="Url Foto"
-              {...register("foto", {
-                required: true,
-                minLength: 10,
-              })} />
-            <select className="form-control" id="marca_id"
-              {...register("marca_id", {
-                required: true,
-              })}>
-              <option value="1">Renault</option>
-              <option value="2">Fiat</option>
-              <option value="3">Chevrolet</option>
-              <option value="4">Ford</option>
-              <option value="5">Voltswagen</option>
-              <option value="6">Honda</option>
-              <option value="7">Peugout</option>
-              <option value="8">Hyundai</option>
-            </select>
-            <input
-              type="number"
-              className="form-control "
-              placeholder="preco"
-              {...register("preco", {
-                required: true,
-                min: 1,
-                max: 1000000,
-              })} />
-            <input
-              type="number"
-              className="form-control"
-              placeholder="ano"
-              {...register("ano", {
-                required: true,
-                min: 1000,
-                max: 2023,
-              })} />
-
-            <input type="submit" />
-          </form>
-        </div>
-      </div>
-    </div><div className="container">
+<div className="container">
         <div className="container-fluid my-2">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="input-group">
@@ -179,23 +129,23 @@ const Listagem = () => {
           </form>
         </div>
         <div className="row">
-          {carros.map((carro, index) => (
+          {jogos.map((jogo, index) => (
             <ItemLista
-              id={carro.id}
-              foto={carro.foto}
-              modelo={carro.modelo}
-              marca={carro.marca}
-              preco={carro.preco}
-              ano={carro.ano}
-              destaque={carro.destaque}
-              FavClick={() => FavCar(carro.id)}
-              delClick={() => DelCar(carro.id)}
-              likeClick={() => clienteLike(carro.id, index)}
+              id={jogo.id}
+              foto={jogo.foto}
+              jnome={jogo.jnome}
+              genero={jogo.genero}
+              descricao={jogo.descricao}
+            
+              destaque={jogo.destaque}
+              FavClick={() => FavCar(jogo.id)}
+              delClick={() => DelCar(jogo.id)}
+            
 
-              key={carro.id} />
+              key={jogo.id} />
           ))}
         </div>
-      </div></>
+      </div>
   );
 };
 

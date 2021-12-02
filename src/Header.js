@@ -16,22 +16,27 @@ const Header = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-sm bg-primary navbar-dark">
+    <nav className="navbar navbar-expand-sm bg-dark navbar-dark mb-4">
       <Link className="navbar-brand" to="/">
         <img
-          src="herbie.png"
+          src="GameCenter.png"
           alt="Revenda Herbie"
-          width="100"
+          width="80"
           className="float-left mr-2"
         />
-        <h3>Revenda Herbie</h3>
-        <h5>Veículos em Destaque</h5>
+        <h3>GameCenter</h3>
+        
       </Link>
 
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/graph1">
             Gráfico
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/jogos">
+            Enviar Jogos
           </Link>
         </li>
         <li className="nav-item">
@@ -42,7 +47,7 @@ const Header = () => {
         <li className="nav-item">
           <span className="nav-link" onClick={loginLogout}>
             <i className="fas fa-user-friends mr-2"></i>
-            { cliente.dados.nome ? cliente.dados.nome + " (sair)" : "(identifique-se)"}
+            { cliente.dados.nome ? cliente.dados.nome + " (sair)" : "(Logar)"}
           </span>
         </li>
       </ul>

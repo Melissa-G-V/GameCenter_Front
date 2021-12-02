@@ -27,17 +27,15 @@ const ItemLista = (props) => {
 
   return (
     <div className="card col-sm-3 col-6 my-2 mx-2">
-      <p>{props.id}</p>
+      <h5>id jogo: {props.id}</h5>
       <img className="card-img-top" src={props.foto} alt="Veículo em Destaque" />
       <div className="card-body">
         <h4 className="card-title">
-          {props.marca} {props.modelo} ({props.ano})
+          {props.jnome}
         </h4>
+        <h6>{props.genero}</h6>
         <p className="card-text">
-          Preço R$: &nbsp;
-          {Number(props.preco).toLocaleString("pt-br", {
-            minimumFractionDigits: 2,
-          })}
+        "{props.descricao}"
         </p>
         {likeButtons}
       </div>

@@ -22,7 +22,7 @@ const stars = (value) => {
 
   return (
 <div class="card container my-2">
-  <h5 class="card-header bg-primary">{props.modelo}</h5>
+  <h5 class="card-header bg-primary">{props.jnome}</h5>
   <div class="card-body">
       <div className="row">
           <div className="col-4">

@@ -5,7 +5,7 @@ import Conecta from "./Conecta";
 import { ClienteContext } from "./ClienteContext";
 
 const FormTwo = () => {
-const [carros, setCarros] = useState([]);
+const [jogos, setJogos] = useState([]);
   const {
     register,
     handleSubmit,
@@ -13,30 +13,28 @@ const [carros, setCarros] = useState([]);
   } = useForm();
   const cliente = useContext(ClienteContext);
 
-  const getCarros = async () => {
-    const lista = await Conecta.get("carros");
+  const getJogos = async () => {
+    const lista = await Conecta.get("jogos");
     //    console.log(lista);
-    setCarros(lista.data);
+    setJogos(lista.data);
   };
   useEffect(() => {
-    getCarros();
+    getJogos();
   }, []);
 
 
   const onSubmit = async (data) => {
     console.log("data", data);
-   
-    axios.post('http://localhost:3001/carros', {
-        modelo: data.modelo,
+    axios.post('http://localhost:3001/jogos', {
+        jnome: data.jnome,
         foto: data.foto,
-        ano: data.ano,
-        preco: data.preco,
-        marca_id: data.marca_id
+        descricao: data.descricao,
+        genero_id: data.genero_id
       })
       .then(function (response) {
-        alert('Item Cadastrado Com Sucesso')
+        alert('Jogo Cadastrado Com Sucesso')
         console.log(response)
-        getCarros()
+        getJogos()
         
       })
       .catch(function (error) {
@@ -49,49 +47,35 @@ const [carros, setCarros] = useState([]);
   return (
     <div className="form col-sm">
       <div className="card">
-        <div className="card-header bg-primary">POSTAR VEICULO</div>
+        <div className="card-header bg-primary">Postar Jogo</div>
         <div className="card-body bg-secondary">
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}
             <input className="form-control"
-                placeholder="modelo" defaultValue="modelo" {...register("modelo")} />
+                placeholder="jnome" defaultValue="Nome Jogo" {...register("jnome")} />
             {/* include validation with required or other standard HTML validation rules */}
             <input type="foto" className="form-control" placeholder="Url Foto"
                 {...register("foto", {
-                required: true,
                 minLength: 10,
                 })}/>
-            <select className="form-control" id="marca_id"
-            {...register("marca_id", {
-                required: true,
+            <select className="form-control" id="genero_id"
+            {...register("genero_id", {
+
                 })}>
-                <option value="1">Renault</option>
-                <option value="2">Fiat</option>
-                <option value="3">Chevrolet</option>
-                <option value="4">Ford</option>
-                <option value="5">Voltswagen</option>
-                <option value="6">Honda</option>
-                <option value="7">Peugout</option>
-                <option value="8">Hyundai</option>
+                <option value="1">Aventura</option>
+                <option value="2">PointClick</option>
+                <option value="3">Plataforma</option>
+                <option value="4">RPG</option>
+                <option value="5">FPS</option>
+                <option value="6">Sandbox</option>
+                <option value="7">Puzzle</option>
+                <option value="8">Luta</option>
             </select>
-            <input
-                type="number"
-                className="form-control "
-                placeholder="preco"
-                {...register("preco", {
-                     required: true,
-                    min: 1,
-                    max: 1000000,
-                 })}/>
-            <input
-                type="number"
-                className="form-control"
-                placeholder="ano"
-                {...register("ano", {
-                     required: true,
-                    min: 1000,
-                    max: 2023,
-                 })}/>
+            <input type="descricao" className="form-control" placeholder="descricao"
+                {...register("descricao", {
+
+                minLength: 10,
+                })}/>
 
  <input type="submit" />
           </form>

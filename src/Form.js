@@ -14,9 +14,8 @@ const Form = () => {
 
   const onSubmit = async (data) => {
     console.log("data", data);
-
     axios.post('http://localhost:3001/reviews2', {
-        carros_id: data.carros_id,
+        jogos_id: data.jogos_id,
         usuarios_id: cliente.dados.id,
         comentario: data.comentario,
         estrelas: data.estrelas,
@@ -33,7 +32,7 @@ const Form = () => {
   return (
     <div className="form col-sm">
       <div className="card">
-        <div className="card-header bg-primary">ENVIAR AVALIAÇÂO</div>
+        <div className="card-header bg-primary">AvaliarJogo (precisa estar logado)</div>
         <div className="card-body bg-secondary">
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}
@@ -42,7 +41,7 @@ const Form = () => {
             {/* include validation with required or other standard HTML validation rules */}
 
             <input className="form-control" type="number" placeholder="id produto"
-             {...register("carros_id")} />
+             {...register("jogos_id")} />
             {/* include validation with required or other standard HTML validation rules */}
             <input className="form-control" type="number" placeholder="Nº Estrelas"
              {...register("estrelas", { required: true, min: 1, max: 5, })} />

@@ -33,6 +33,7 @@ const [reviews, setReview] = useState([]);
         modelo={review.modelo}
         usuario_id={review.usuario_id}
         nome={review.nome}
+        jnome={review.jnome}
         foto={review.foto}
         email={review.email}
         estrelas={review.estrelas}

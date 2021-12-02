@@ -1,4 +1,0 @@
-
-        <span className="float-right" onClick={console.log(props.id)}>
-          <i className="fas fa-trash-alt fa-lg mr-2"></i>
-        </span>

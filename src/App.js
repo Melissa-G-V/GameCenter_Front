@@ -11,7 +11,7 @@ import FormTwo from "./FormTwo.js";
 import Reviews from "./Reviews.js";
 import "./App.css";
 import Grafico2 from "./Grafico2.js";
-
+import Grafico3 from "./Grafico3";
 
 
 
@@ -33,8 +33,11 @@ function App() {
           <Route path="/login">
             <UserLogin />
           </Route>
+          <Route path="/jogos">
+            <FormTwo />
+          </Route>
           <Route path="/graph1">
-           <Grafico2/>
+           <Grafico3/>
           </Route>
           <Route path="/review">
            <Reviews/>
