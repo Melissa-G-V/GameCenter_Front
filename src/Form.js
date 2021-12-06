@@ -3,6 +3,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Conecta from "./Conecta";
 import { ClienteContext } from "./ClienteContext";
+import "./Form.css";
 
 const Form = () => {
   const {
@@ -32,11 +33,11 @@ const Form = () => {
   return (
     <div className="form col-sm">
       <div className="card">
-        <div className="card-header bg-primary">AvaliarJogo (precisa estar logado)</div>
-        <div className="card-body bg-secondary">
+        <div className="card-header">AvaliarJogo (precisa estar logado)</div>
+        <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}
-            <input className="form-control" defaultValue="test"
+            <input className="form-control" placeholder="commentario"
              {...register("comentario")} />
             {/* include validation with required or other standard HTML validation rules */}
 

@@ -10,7 +10,7 @@ import Form from "./Form.js";
 import FormTwo from "./FormTwo.js";
 import Reviews from "./Reviews.js";
 import "./App.css";
-import Grafico2 from "./Grafico2.js";
+//import Grafico2 from "./Grafico2.js";
 import Grafico3 from "./Grafico3";
 
 

@@ -60,7 +60,7 @@ const Grafico2 = () => {
 
   return (
     <div class="d-flex justify-content-center">
-      <div style={{ width: "1000px", height: "800px" }}>
+      <div style={{ width: "30%" }}>
         <Pie options={options} data={data} />
       </div>
     </div>

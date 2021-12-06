@@ -1,0 +1,12 @@
+.card{
+    border-radius: 15px 15px 15px 50px;
+    border: 2px solid #21ad83;
+    background-color: rgb(29, 28, 28);
+    color: azure;
+}
+.div card-body{
+    border-radius: 15px 15px 15px 50px;
+    border: 2px solid #21ad83;
+    background-color: rgb(29, 28, 28);
+    color: azure;
+}

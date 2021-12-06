@@ -27,36 +27,7 @@ const Listagem = () => {
   }, []);
 // define o método que será executado após renderizar o componente
 
-  const clienteLike = async (id, index) => {
-    
-    let voto = {
-      usuario_id: cliente.dados.id,
-      jogo_id: id,
-      gostou: 1,
-    };
 
-    const config = {
-      headers: { Authorization: `Bearer ${cliente.dados.token}` },
-    };
-
-    await Conecta.post("likes", voto, config);
-
-    // Obtém o registro (para saber a quantidade de likes da tabela jogos)
-    const reg = await Conecta.get("jogos/" + id);
-    //console.log(reg)
-
-    let likes = Number(reg.data.likes) + 1;
-
-    // altera a quantidade de likes no WebServices
-    await Conecta.put("jogos/like/" + id);
-
-    // atualiza o array
-    let newjogos = [...jogos];
-    newjogos[index].likes = likes;
-    setJogos(newjogos);
-
-    alert("Ok! Obrigado pela sua participação");
-  };
 
 
 //DELETA O jogo
@@ -135,13 +106,10 @@ const Listagem = () => {
               foto={jogo.foto}
               jnome={jogo.jnome}
               genero={jogo.genero}
-              descricao={jogo.descricao}
-            
+              descricao={jogo.descricao}  
               destaque={jogo.destaque}
               FavClick={() => FavCar(jogo.id)}
               delClick={() => DelCar(jogo.id)}
-            
-
               key={jogo.id} />
           ))}
         </div>

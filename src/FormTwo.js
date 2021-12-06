@@ -3,6 +3,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Conecta from "./Conecta";
 import { ClienteContext } from "./ClienteContext";
+import "./FormTwo.css";
 
 const FormTwo = () => {
 const [jogos, setJogos] = useState([]);
@@ -47,8 +48,8 @@ const [jogos, setJogos] = useState([]);
   return (
     <div className="form col-sm">
       <div className="card">
-        <div className="card-header bg-primary">Postar Jogo</div>
-        <div className="card-body bg-secondary">
+        <div className="card-header ">Postar Jogo</div>
+        <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}
             <input className="form-control"

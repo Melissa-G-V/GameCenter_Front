@@ -1,4 +1,9 @@
-
+.list-group-item{
+    background-color: rgb(29, 28, 28);
+}
+h1 {
+    color:#21ad83 ;
+}
 
 .fa-heart {
     color: white;

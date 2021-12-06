@@ -1,0 +1,19 @@
+.card{
+    border-radius: 15px 15px 15px 50px;
+    border: 2px solid #21ad83;
+    background-color: rgb(29, 28, 28);
+    color: azure;
+}
+.form-control{
+    background-color: rgba(0, 0, 0, 0.048);
+    color: aliceblue;
+    border:1px solid #21ad83;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+input{
+    margin-top: 3px;
+    border: 1px solid #21ad83 ;
+    background-color: rgb(29, 28, 28);
+    color: aliceblue;
+}
